@@ -10,6 +10,63 @@ def merge(items1, items2):
     # TODO: Find minimum item in both lists and append it to new list
     # TODO: Append remaining items in non-empty list to new list
 
+    """
+    def merge(items1, items2):
+    """Merge given lists of items, each assumed to already be in sorted order,
+    and return a new list containing all items in sorted order.
+    TODO: Running time: ??? Why and under what conditions?
+    TODO: Memory usage: ??? Why and under what conditions?"""
+    # TODO: Repeat until one list is empty
+    # TODO: Find minimum item in both lists and append it to new list
+    # TODO: Append remaining items in non-empty list to new list
+    final_sorted = []
+    #3 10  
+
+    #[3,25,40]
+    #.  l
+    #[10,20,30]
+    #.   r 
+
+    left_index = 0
+    right_index = 0
+    #while we haven't tried to access anything outside the length of one of the arrays
+    while(left_index < len(items1) and right_index < len(items2)):
+
+      if items1[left_index] < items2[right_index]:
+        #the item at the right index is great
+        final_sorted.append(items1[left_index])
+        left_index += 1
+      else: #where the item at the left index is greater
+        final_sorted.append(items2[right_index])
+        right_index += 1
+      
+    while left_index < len(items1):
+      final_sorted.append(items1[left_index])
+      left_index += 1
+
+    while right_index < len(items2):
+      final_sorted.append(items2[right_index])
+      right_index += 1
+
+
+
+
+
+    return final_sorted
+
+
+print(merge([3,25,40,55], [10,20,30]))
+
+def merge_sort(my_list):
+  # TODO: Check if list is so small it's already sorted (base case)
+    # TODO: Split items list into approximately equal halves
+    # TODO: Sort each half by recursively calling merge sort
+    # TODO: Merge sorted halves into one list in sorted order
+    pass
+
+
+    """
+
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each recursively, and merging results into a list in sorted order.

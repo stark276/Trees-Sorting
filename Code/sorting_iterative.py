@@ -1,6 +1,5 @@
 #!python
 
-
 def is_sorted(items):
 
  #TODO: write code to implement the selection sort algorithm
@@ -55,6 +54,7 @@ def bubble_sort(list_a):
 print(bubble_sort([4,8,1,14,8,2,9,5,7,6,6]))
 
 def selection_sort(items):
+  arr = []
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order.
     TODO: Running time: ??? Why and under what conditions?
