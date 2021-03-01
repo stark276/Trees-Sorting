@@ -1,82 +1,62 @@
 #!python
 
-
 def merge(items1, items2):
-    """Merge given lists of items, each assumed to already be in sorted order,
-    and return a new list containing all items in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until one list is empty
-    # TODO: Find minimum item in both lists and append it to new list
-    # TODO: Append remaining items in non-empty list to new list
+  """Merge given lists of items, each assumed to already be in sorted order,
+  and return a new list containing all items in sorted order.
+  Running time: ??? Why and under what conditions?
+  Memory usage: ??? Why and under what conditions?"""
+  #TODO: Repeat until one list is empty
+  i = 0
+  j = 0
+  len1 = len(items1)
+  len2 = len(items2)
+  arr1 = items1
+  arr2 = items2
+  arr = []
 
-    """
-    def merge(items1, items2):
-    """Merge given lists of items, each assumed to already be in sorted order,
-    and return a new list containing all items in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until one list is empty
-    # TODO: Find minimum item in both lists and append it to new list
-    # TODO: Append remaining items in non-empty list to new list
-    final_sorted = []
-    #3 10  
+  # TODO: Find minimum item in both lists and append it to new list
+  while((i<len1) and (j<len2)):
+    if arr1[i] < arr2[j]:
+      arr.append(arr1[i])
+      i= i + 1
+    else:
+      arr.append(arr2[j])
+      j = j + 1
 
-    #[3,25,40]
-    #.  l
-    #[10,20,30]
-    #.   r 
-
-    left_index = 0
-    right_index = 0
-    #while we haven't tried to access anything outside the length of one of the arrays
-    while(left_index < len(items1) and right_index < len(items2)):
-
-      if items1[left_index] < items2[right_index]:
-        #the item at the right index is great
-        final_sorted.append(items1[left_index])
-        left_index += 1
-      else: #where the item at the left index is greater
-        final_sorted.append(items2[right_index])
-        right_index += 1
-      
-    while left_index < len(items1):
-      final_sorted.append(items1[left_index])
-      left_index += 1
-
-    while right_index < len(items2):
-      final_sorted.append(items2[right_index])
-      right_index += 1
+  # TODO: Append remaining items in non-empty list to new list
+  while i < len1:
+    arr.append(arr1[i])
+    i = i + 1
+  while j < len2:
+    arr.append(arr2[j])
+    j=j+1
+  return arr
 
 
 
+# print(merge([3,25,40,55], [10,20,30]))
 
-
-    return final_sorted
-
-
-print(merge([3,25,40,55], [10,20,30]))
 
 def merge_sort(my_list):
-  # TODO: Check if list is so small it's already sorted (base case)
-    # TODO: Split items list into approximately equal halves
-    # TODO: Sort each half by recursively calling merge sort
-    # TODO: Merge sorted halves into one list in sorted order
-    pass
-
-
-    """
-
-def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each recursively, and merging results into a list in sorted order.
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
     # TODO: Check if list is so small it's already sorted (base case)
-    # TODO: Split items list into approximately equal halves
-    # TODO: Sort each half by recursively calling merge sort
-    # TODO: Merge sorted halves into one list in sorted order
-
+    if len(my_list) == 1:
+      return my_list
+    #recursive case
+    # Split items list into approximately equal halves
+    middle_index = len(my_list)//2
+    left_list = my_list[:middle_index]
+    right_list = my_list[middle_index:]
+    #Sort each half by recursively calling merge sort
+    left_result = merge_sort(left_list)
+    right_result = merge_sort(right_list)
+    #Merge sorted halves into one list in sorted order
+    return merge(left_result, right_result)
+list1 = [3,25,40,55,10,20,30]
+print(merge_sort(list1))
 
 def partition(items, low, high):
     """Return index `p` after in-place partitioning given items in range
