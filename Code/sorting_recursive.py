@@ -32,8 +32,6 @@ def merge(items1, items2):
     j=j+1
   return arr
 
-
-
 # print(merge([3,25,40,55], [10,20,30]))
 
 
@@ -56,29 +54,65 @@ def merge_sort(my_list):
     #Merge sorted halves into one list in sorted order
     return merge(left_result, right_result)
 list1 = [3,25,40,55,10,20,30]
-print(merge_sort(list1))
+# print(merge_sort(list1))
 
-def partition(items, low, high):
-    """Return index `p` after in-place partitioning given items in range
-    `[low...high]` by choosing a pivot (TODO: document your method here) from
-    that range, moving pivot into index `p`, items less than pivot into range
-    `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Choose a pivot any way and document your method in docstring above
-    # TODO: Loop through all items in range [low...high]
-    # TODO: Move items less than pivot into front of range [low...p-1]
-    # TODO: Move items greater than pivot into back of range [p+1...high]
-    # TODO: Move pivot item into final position [p] and return index p
+        
+
+def partition(array, start, end):
+  pivot = array[start]
+  low = start + 1
+  high = end
+  #array = [3,1,4,2,5]
+  #  [3,1,2,4,5]
+  # [3,1,2,4,5]
+
+  while True:
+    
+    
+  
+    # If the current value we're looking at is larger than the pivot
+    # it's in the right place (right side of pivot) and we can move left,
+    # to the next element.
+    # We also need to make sure we haven't surpassed the low pointer, since that
+    # indicates we have already moved all the elements to their correct side of the pivot
+    while low <= high and array[high] >= pivot:
+      high = high - 1
+      # stands on 2
+
+    # Opposite process of the one above
+    while low <= high and array[low] <= pivot:
+      low = low + 1
+      # meet each other at 2
+    
+    # We either found a value for both high and low that is out of order
+    # or low is higher than high, in which case we exit the loop
+    if low <= high:
+      array[low], array[high] = array[high], array[low]
+        # The loop continues
+    
+    else:
+        # We exit out of the loop
+      break
+  
+  array[start], array[high] = array[high], array[start]
+  print(high)
+
+  return high
+  
+
+def quick_sort(array, start, end):
+  #base case
+  if start >= end:
+    return
+  #recursive case
+  p = partition(array, start, end)
+  # print(p)
+  quick_sort(array, start, p-1)
+  quick_sort(array, p+1, end)
 
 
-def quick_sort(items, low=None, high=None):
-    """Sort given items in place by partitioning items in range `[low...high]`
-    around a pivot item and recursively sorting each remaining sublist range.
-    TODO: Best case running time: ??? Why and under what conditions?
-    TODO: Worst case running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Check if high and low range bounds have default values (not given)
-    # TODO: Check if list or range is so small it's already sorted (base case)
-    # TODO: Partition items in-place around a pivot and get index of pivot
-    # TODO: Sort each sublist range by recursively calling quick sort
+
+array = [3,1,4,2,5]
+
+quick_sort(array, 0, len(array) - 1)
+print(array)
