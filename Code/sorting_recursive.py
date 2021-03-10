@@ -1,6 +1,6 @@
 #!python
 
-def merge(items1, items2):
+def merge(arr1, arr2):
   """Merge given lists of items, each assumed to already be in sorted order,
   and return a new list containing all items in sorted order.
   Running time: ??? Why and under what conditions?
@@ -8,10 +8,8 @@ def merge(items1, items2):
   #TODO: Repeat until one list is empty
   i = 0
   j = 0
-  len1 = len(items1)
-  len2 = len(items2)
-  arr1 = items1
-  arr2 = items2
+  len1 = len(arr1)
+  len2 = len(arr2)
   arr = []
 
   # TODO: Find minimum item in both lists and append it to new list
@@ -31,7 +29,6 @@ def merge(items1, items2):
     arr.append(arr2[j])
     j=j+1
   return arr
-
 # print(merge([3,25,40,55], [10,20,30]))
 
 
@@ -53,8 +50,8 @@ def merge_sort(my_list):
     right_result = merge_sort(right_list)
     #Merge sorted halves into one list in sorted order
     return merge(left_result, right_result)
-list1 = [3,25,40,55,10,20,30]
-# print(merge_sort(list1))
+list1 = [3,25,40,55,47,10,20,30]
+print(merge_sort(list1))
 
         
 
@@ -63,12 +60,12 @@ def partition(array, start, end):
   low = start + 1
   high = end
   #array = [3,1,4,2,5]
-  #  [3,1,2,4,5]
+  # [3,1,2,4,5]
   # [3,1,2,4,5]
 
   while True:
     
-    
+    # print(array[high])
   
     # If the current value we're looking at is larger than the pivot
     # it's in the right place (right side of pivot) and we can move left,
@@ -95,9 +92,10 @@ def partition(array, start, end):
       break
   
   array[start], array[high] = array[high], array[start]
-  print(high)
+  # print(high)
 
   return high
+  
   
 
 def quick_sort(array, start, end):
@@ -109,10 +107,13 @@ def quick_sort(array, start, end):
   # print(p)
   quick_sort(array, start, p-1)
   quick_sort(array, p+1, end)
+  # print(array)
 
 
 
-array = [3,1,4,2,5]
+array = [3,1,4,2,5,8,67,56]
 
+# quick_sort(array, 0, len(array) - 1)
+# print(array)
 quick_sort(array, 0, len(array) - 1)
-print(array)
+# print(array)
